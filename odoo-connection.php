@@ -25,6 +25,39 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 			add_action('woocommerce_order_status_processing', array($this, 'send_to_ws' ) );
 		}
 
+		public function register_settings(){
+			add_option('swmx_woc_hostname', 'https://domain.com');
+			register_setting('swmx_woc', 'swmx_woc_hostname');
+		}
+
+		public function register_options_page(){
+			add_menu_page(
+				'Odoo Connection',
+				'Odoo Connection',
+				'manage_options',
+				'swmx_woc',
+				array($this, 'options_page')
+			);
+		}
+
+		public function options_page(){
+			?>
+			<div>
+				<?php screen_icon(); ?>
+				<h2>Configuración Webservice</h2>
+				<?php settings_fields('swmx_woc'); ?>
+				<form method="post" action="options.php">
+					<label for="swmx_woc_hostname">Dirección Webservice</label>
+					<input
+						name="swmx_woc_hostname"
+						id="swmx_woc_hostname"
+						value="<?php echo get_option("swmx_woc_hostname");?>" />
+						<?php submit_button(); ?>
+				</form>
+			</div>
+			<?php
+		}
+
 		public function order_webhook_payment($order_id){
 			$order = wc_get_order($order_id);
 			$this->send_to_ws($order);
@@ -119,41 +152,9 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 			}
 		}
 
-		public function register_settings(){
-			add_option('swmx_woc_hostname', 'https://domain.com');
-			register_setting('swmx_woc', 'swmx_woc_hostname');
-		}
-
-		public function register_options_page(){
-			add_menu_page(
-				'Odoo Connection',
-				'Odoo Connection',
-				'manage_options',
-				'swmx_woc',
-				array($this, 'options_page')
-			);
-		}
-
-
-		public function options_page(){
-			?>
-			<div>
-				<?php screen_icon(); ?>
-				<h2>Configuración Webservice</h2>
-				<?php settings_fields('swmx_woc'); ?>
-				<form method="post" action="options.php">
-					<label for="swmx_woc_hostname">Dirección Webservice</label>
-					<input
-						name="swmx_woc_hostname"
-						id="swmx_woc_hostname"
-						value="<?php echo get_option("swmx_woc_hostname");?>" />
-						<?php submit_button(); ?>
-				</form>
-			</div>
-			<?php
-		}
-
 	}
+	global $SWMX_WOC;
+	$SWMX_WOC = new SWMX_Odoo_Connection();
 }
 
 
