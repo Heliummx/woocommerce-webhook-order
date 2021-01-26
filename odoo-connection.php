@@ -103,7 +103,6 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 				'city' 				=> $order->get_billing_city(),
 				'company' 		=> $order->get_billing_company(),
 				'country'			=> $order->get_billing_country(),
-				'email'				=> $order->get_billing_email(),
 				'first_name'	=> $order->get_billing_first_name(),
 				'last_name' 	=> $order->get_billing_last_name(),
 				'phone'				=> $order->get_billing_phone(),
