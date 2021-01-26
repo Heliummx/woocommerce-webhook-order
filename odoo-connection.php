@@ -80,7 +80,7 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 				'data_format' => 'body'
 			];
 
-			wp_remote_post($endpoint, $body);
+			wp_remote_post($endpoint, $options);
 		}
 
 		public function get_order_data($order){
