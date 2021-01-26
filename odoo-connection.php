@@ -122,7 +122,6 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 				'country'			=> $order->get_shipping_country(),
 				'first_name'	=> $order->get_shipping_first_name(),
 				'last_name' 	=> $order->get_shipping_last_name(),
-				'phone'				=> $order->get_shipping_phone(),
 				'postcode'    => $order->get_shipping_postcode()
 			];
 			return $address;
