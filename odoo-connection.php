@@ -22,7 +22,7 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 			add_action('admin_init', array( $this, 'register_settings'));
 			add_action('admin_menu', array( $this, 'register_options_page'));
 			add_action('woocommerce_order_status_on-hold', array($this,'send_to_ws' ) );
-			add_action('woocommerce_order_status_processing', array($this, 'send_to_ws' ) )
+			add_action('woocommerce_order_status_processing', array($this, 'send_to_ws' ) );
 		}
 
 		public function order_webhook_payment($order_id){
