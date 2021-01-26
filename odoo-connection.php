@@ -45,8 +45,8 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 			<div>
 				<?php screen_icon(); ?>
 				<h2>Configuración Webservice</h2>
-				<?php settings_fields('swmx_woc'); ?>
 				<form method="post" action="options.php">
+					<?php settings_fields('swmx_woc'); ?>
 					<label for="swmx_woc_hostname">Dirección Webservice</label>
 					<input
 						name="swmx_woc_hostname"
