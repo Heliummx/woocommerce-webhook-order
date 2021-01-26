@@ -93,7 +93,7 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 				'shipping-address' 	=>	$this->get_shipping_address($order)
 			];
 
-			return data;
+			return $data;
 		}
 
 		public function get_billing_address($order){
