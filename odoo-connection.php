@@ -130,7 +130,7 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 		public function get_line_items($order){
 			$line_items = [];
 			foreach($order->get_items() as $item){
-				if( $item->is_type('product') ) {
+				// if( $item->is_type('product') ) {
 					$product 	= wc_get_product($item->get_product_id());
 					$name 		= $item->get_name();
 					$sku  		= $product->get_sku();
@@ -145,9 +145,9 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 						'total' => $total,
 						'subtotal' => $subtotal
 					];
-				}
-				return $line_items;
+				// }
 			}
+			return $line_items;
 		}
 
 	}
