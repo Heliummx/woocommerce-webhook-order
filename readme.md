@@ -1,5 +1,5 @@
-lugin Name ===
-Contributors: Narfthag
+Plugin Name ===
+Contributors: Heliummx, Narfthag
 Donate link:
 Tags: woocommerce
 Requires at least: 5.3
