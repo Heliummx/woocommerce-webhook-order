@@ -134,16 +134,21 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 					$product 	= wc_get_product($item->get_product_id());
 					$name 		= $item->get_name();
 					$sku  		= $product->get_sku();
+
 					$qty  		= $item->get_quantity();
+					$to_tax		= $item->get_total_tax();
 					$total 		= $item->get_total();
+					$price		= $total / $qty;
 					$subtotal = $item->get_subtotal();
 
 					$line_items[] = [
 						'name' => $name,
 						'sku'  => $sku,
 						'qty'  => $qty,
+						'price' => $price,
 						'total' => $total,
-						'subtotal' => $subtotal
+						'subtotal' => $subtotal,
+						'total-tax' => $to_tax
 					];
 				// }
 			}
