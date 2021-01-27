@@ -43,7 +43,6 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 		public function options_page(){
 			?>
 			<div>
-				<?php screen_icon(); ?>
 				<h2>Configuración Webservice</h2>
 				<form method="post" action="options.php">
 					<?php settings_fields('swmx_woc'); ?>
