@@ -27,7 +27,7 @@ In the sidebar menu is the page for configurable messages.
 
 == Frequently Asked Questions ==
 
-= How do i configure the endpoing? =
+= How do i configure the endpoint? =
 
 In the side menu it would appear a new option that says "Odoo Connection".
 

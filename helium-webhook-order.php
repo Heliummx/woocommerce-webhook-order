@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Odoo Connection SWMX
+ * Plugin Name: Webhook Order SWMX
  * Plugin URI: https://github.io
- * Description: This plugins create the pipes for the odoo-woocommerce connection.
+ * Description: This plugins create a Webhook for each time an Order change state to On-Hold or Processing.
  * Version: 1.0.0
  * Author: Narfhtag
  * Author URI: http://github.io/narfthag
@@ -15,8 +15,8 @@ if(! in_array('woocommerce/woocommerce.php', apply_filters('active_plugins',get_
 	return;
 }
 
-if( !class_exists('SWMX_Odoo_Connection') ){
-	class SWMX_Odoo_Connection {
+if( !class_exists('SWMX_Webhook_Order') ){
+	class SWMX_Webhook_Order {
 
 		public function __construct(){
 			add_action('admin_init', array( $this, 'register_settings'));
@@ -32,8 +32,8 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 
 		public function register_options_page(){
 			add_menu_page(
-				'Odoo Connection',
-				'Odoo Connection',
+				'Webhook Order',
+				'Webhook Order',
 				'manage_options',
 				'swmx_woc',
 				array($this, 'options_page')
@@ -129,7 +129,6 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 		public function get_line_items($order){
 			$line_items = [];
 			foreach($order->get_items() as $item){
-				// if( $item->is_type('product') ) {
 					$product 	= wc_get_product($item->get_product_id());
 					$name 		= $item->get_name();
 					$sku  		= $product->get_sku();
@@ -149,14 +148,13 @@ if( !class_exists('SWMX_Odoo_Connection') ){
 						'subtotal' => $subtotal,
 						'total-tax' => $to_tax
 					];
-				// }
 			}
 			return $line_items;
 		}
 
 	}
 	global $SWMX_WOC;
-	$SWMX_WOC = new SWMX_Odoo_Connection();
+	$SWMX_WOC = new SWMX_Webhook_Order();
 }
 
 
