@@ -130,8 +130,15 @@ if( !class_exists('SWMX_Webhook_Order') ){
 			$line_items = [];
 			foreach($order->get_items() as $item){
 					$product 	= wc_get_product($item->get_product_id());
+					$variant 	= wc_get_product($item->get_variation_id());
 					$name 		= $item->get_name();
-					$sku  		= $product->get_sku();
+				
+					if(empty($variant)){
+					   $sku = $product->get_sku();
+					}
+					else{
+					   $sku = $variant->get_sku();
+					}
 
 					$qty  		= $item->get_quantity();
 					$to_tax		= $item->get_total_tax();
